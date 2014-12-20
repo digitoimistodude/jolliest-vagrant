@@ -45,22 +45,7 @@ Since I want to make this as simple as possible and this will be the single VM f
 2. You may want to remove the default "It works!" -page. Do this by `rm /var/www/index.html`
 3. `cd /var/www/` and `ls`. You should see all your projects and a directory listing when you go to localhost with your browser
 
-### Installing Alternative PHP cache
-
-Alternative PHP cache speeds up PHP processing. This tutorial is based on [Digital Ocean's article](https://www.digitalocean.com/community/tutorials/how-to-install-alternative-php-cache-apc-on-a-cloud-server-running-ubuntu-12-04):
-
-1. `sudo apt-get -y install php-pear php5-dev make libpcre3-dev`
-2. `sudo pecl install apc`, choose or press return when asked
-3. `sudo pico -w /etc/php5/apache2/php.ini`, scroll all the way down and add to the last line:
-
-        extension = apc.so
-        apc.shm_size = 64
-        apc.stat = 0
-
-4. `sudo cp /usr/share/php/apc.php /var/www` and `sudo service apache2 restart`
-5. You should now see APC info when you go to [localhost/apc.php](http://localhost/apc.php) with your browser
-
-### Installing FastCGI
+#### 1. Installing FastCGI
 
 Another speed improving trick is to use FastCGI as Server API instead of the default Apache Handler. This is based on [HowtoForge's article](http://www.howtoforge.com/using-php5-fpm-with-apache2-on-ubuntu-12.04-lts):
 
@@ -78,6 +63,25 @@ Another speed improving trick is to use FastCGI as Server API instead of the def
 5. `sudo service apache2 restart`
 6. `sudo echo "<?php phpinfo();" > /var/www/info.php`
 7. Now you should see *FPM/FastCGI* in the third row "Server API" when you go to [localhost/info.php](http://localhost/info.php)
+
+#### 2. Installing Alternative PHP cache
+
+Alternative PHP cache speeds up PHP processing. This tutorial is based on [Digital Ocean's article](https://www.digitalocean.com/community/tutorials/how-to-install-alternative-php-cache-apc-on-a-cloud-server-running-ubuntu-12-04):
+
+1. `sudo apt-get -y install php-pear php5-dev make libpcre3-dev`
+2. `sudo pecl install apc`, choose or press return when asked
+3. `sudo pico -w /etc/php5/fpm/php.ini` (normally */etc/php5/apache2/php.ini*, but we are using fpm), scroll all the way down and add to the last line:
+
+        extension = apc.so
+        apc.shm_size = 64
+        apc.stat = 0
+
+4. `sudo cp /usr/share/php/apc.php /var/www` and `sudo service apache2 restart  && sudo service php5-fpm restart`
+5. You should now see APC info when you go to [localhost/apc.php](http://localhost/apc.php) with your browser
+
+#### 3. More speed with configs
+
+I have attached **confs** folder which includes custom *my.cnf* and *php.ini* for you to tweak on. After customizing them further just ssh to vagrant and `sudo cp /vagrant/confs/my.cnf /etc/mysql/my.cnf` and `sudo cp /vagrant/confs/php.ini /etc/php5/fpm/php.ini`. Then run proper restarts `sudo service apache2 restart  && sudo service php5-fpm restart && sudo service mysql restart`
 
 ### How to add new vhost
 
