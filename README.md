@@ -79,6 +79,25 @@ Another speed improving trick is to use FastCGI as Server API instead of the def
 6. `sudo echo "<?php phpinfo();" > /var/www/info.php`
 7. Now you should see *FPM/FastCGI* in the third row "Server API" when you go to [localhost/info.php](http://localhost/info.php)
 
+### How to add new vhost
+
+It's simple to manage multiple projects with apache's sites-enabled configs. If your project name is `jolly`, and located in *~/Projects/jolly*, just add new config to vhosts. *vhosts/jolly.dev.conf* would then be:
+
+    <VirtualHost *:80>
+    
+      ServerAdmin webmaster@jolly
+      ServerName  jolly.dev
+      ServerAlias www.jolly.dev
+      DirectoryIndex index.html index.php
+      DocumentRoot /var/www/jolly
+      LogLevel warn
+      ErrorLog  /var/www/jolly/error.log
+      CustomLog /var/www/jolly/access.log combined
+    
+    </VirtualHost>
+
+Run `vagrant provision` and boom! http://jolly.dev points to your project file.
+
 ## Sequel Pro settings for MySQL
 
 Choose **SSH** tab and add following settings.
