@@ -15,16 +15,13 @@ site=`ls /vagrant/vhosts/`
 if [ "$#" != "1" ]; then
     echo "Available virtual hosts: $site"
     sudo a2ensite $site
+    sudo service apache restart
 else
 
     if test -e $avail; then
         sudo ln -s $avail $enabled
     else
          "$avail virtual host does not exist! Please create one!$site"
-    fi
-
-    if test -e $enabled/$1.conf; then
-        sudo service apache restart
     fi
 fi
 
