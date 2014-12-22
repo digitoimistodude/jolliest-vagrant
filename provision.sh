@@ -15,7 +15,6 @@ site=`ls /vagrant/vhosts/`
 if [ "$#" != "1" ]; then
     echo "Available virtual hosts: $site"
     sudo a2ensite $site
-    sudo service apache restart
 else
 
     if test -e $avail; then
@@ -24,6 +23,9 @@ else
          "$avail virtual host does not exist! Please create one!$site"
     fi
 fi
+
+echo "Booting the machine..."
+sudo service apache2 restart
 
 if [ ! -f /var/log/firsttime ];
 then
