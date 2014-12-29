@@ -28,12 +28,13 @@ Tried  to make up distinctive name for this and noticed *server for multiple pro
 
 1. Install [Virtualbox](https://www.virtualbox.org/)
 2. Install vagrant (`brew install vagrant` on OS X powered by [Homebrew](http://brew.sh/))
-3. Clone this repo to your home directory
-4. Modify **Vagrantfile**: `config.vm.box` and `config.vm.box_url` to match your production server OS, `config.vm.network` for IP (I recommend it to be `10.1.2.3` to prevent collisions with other subnets)
-5. If you store your projects in different folder than *~/Projects*, change the correct path to `config.vm.synced_folder`
-6. Edit or add packages to match your production server packages in **provision.sh** if needed
-7. Add `10.1.2.3 somesite.dev` to your **/etc/hosts**
-8. Run `vagrant up`. This can take a moment.
+3. Install vagrant-triggers with command `vagrant plugin install vagrant-triggers`
+4. Clone this repo to your home directory
+5. Modify **Vagrantfile**: `config.vm.box` and `config.vm.box_url` to match your production server OS, `config.vm.network` for IP (I recommend it to be `10.1.2.3` to prevent collisions with other subnets)
+6. If you store your projects in different folder than *~/Projects*, change the correct path to `config.vm.synced_folder`
+7. Edit or add packages to match your production server packages in **provision.sh** if needed
+8. Add `10.1.2.3 somesite.dev` to your **/etc/hosts**
+9. Run `vagrant up`. This can take a moment.
 
 If you make any changes to **Vagrantfile**, run `vagrant reload` or `vagrant up --provision` if the server is not running, or if you change **provision.sh** while running, run `vagrant provision`.
 
@@ -101,6 +102,12 @@ It's simple to manage multiple projects with apache's sites-enabled configs. If 
     </VirtualHost>
 
 Run `vagrant provision` and boom! http://jolly.dev points to your project file.
+
+## Connecting with another computer in LAN
+
+You should be good to go after setting up **/etc/hosts** to `192.168.2.242 jolly.dev` (depending on your local subnet of course) on remote computer. If you have problems like I had, run this command on your vagrant host PC (not inside vagrant ssh!):
+
+    sudo ssh -p 2222 -gNfL 80:localhost:80 vagrant@localhost -i ~/.vagrant.d/insecure_private_key
 
 ## Sequel Pro settings for MySQL
 

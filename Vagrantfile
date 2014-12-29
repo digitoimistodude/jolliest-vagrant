@@ -6,9 +6,10 @@ Vagrant.configure("2") do |config|
   config.vm.box = "precise64"
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
-  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", host: 80, guest: 80, auto_correct: true
   config.vm.network "private_network", ip: "10.1.2.3"
-  #config.vm.network "public_network", ip: "10.1.2.4", bridge: "en0: Wi-Fi (AirPort)"
+    config.ssh.forward_agent = true
+  config.vm.network "public_network", ip: "192.168.0.242", bridge: "en6: USB Ethernet"
   config.vm.synced_folder "~/Projects", "/var/www", id: "core", :nfs => true, :mount_options => ['nolock,vers=3,udp,actimeo=2']
 
   config.vm.provider "virtualbox" do |v|
@@ -19,5 +20,16 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision :shell, :path => "provision.sh"
+
+  config.trigger.after [:provision, :up, :reload] do
+      system('echo "
+              rdr pass on lo0 inet proto tcp from any to 127.0.0.1 port 80 -> 127.0.0.1 port 8080  
+              rdr pass on lo0 inet proto tcp from any to 127.0.0.1 port 443 -> 127.0.0.1 port 8443  
+              " | sudo pfctl -f - > /dev/null 2>&1; echo "==> Fowarding Ports: 80 -> 8080, 443 -> 8443"')  
+  end
+
+  config.trigger.after [:halt, :destroy] do
+    system("sudo pfctl -f /etc/pf.conf > /dev/null 2>&1; echo '==> Removing Port Forwarding'")
+  end
 
 end
