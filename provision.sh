@@ -61,6 +61,12 @@ then
     # php5-mysql comes w/mysql drivers, but we still have to update php.ini to use them.
     sudo sed -i 's/;pdo_odbc.db2_instance_name/;pdo_odbc.db2_instance_name\nextension=pdo_mysql.so/' /etc/php5/apache2/php.ini
 	
+    # Install curl & wp-cli
+    sudo apt-get -y install curl
+    cd ~/ && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+    sudo mv wp-cli.phar /usr/bin/wp && sudo chmod +x /usr/bin/wp
+
+    # Restart machine, obviously
     sudo service apache2 restart
 fi
 

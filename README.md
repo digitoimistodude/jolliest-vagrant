@@ -109,6 +109,21 @@ You should be good to go after setting up **/etc/hosts** to `192.168.2.242 jolly
 
     sudo ssh -p 2222 -gNfL 80:localhost:80 vagrant@localhost -i ~/.vagrant.d/insecure_private_key
 
+### Port forwarding
+
+`Vagrantfile` has port forwarding included, but Mac OS X has some limitations. If .dev-urls are not reachable from local area network, please add this to `/usr/bin/forwardports` by `sudo nano /usr/bin/forwardports`:
+
+    echo "
+    rdr pass on lo0 inet proto tcp from any to 127.0.0.1 port 80 -> 127.0.0.1 port 8080
+    rdr pass on lo0 inet proto tcp from any to 127.0.0.1 port 443 -> 127.0.0.1 port 8443
+    " | sudo pfctl -f - > /dev/null 2>&1;
+    
+    echo "==> Fowarding Ports: 80 -> 8080, 443 -> 8443";
+    
+    osascript -e 'tell application "Terminal" to quit' & exit;
+
+Chmod it by `chmod +x /usr/bin/forwardports` and run `forwardports`. You have to do this every time you are co-working in LAN.
+
 ## Sequel Pro settings for MySQL
 
 Choose **SSH** tab and add following settings.
