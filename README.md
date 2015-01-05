@@ -22,7 +22,7 @@ Tried  to make up distinctive name for this and noticed *server for multiple pro
 - Vagrantfile with speed optimizations, nfs mounts, 4 GB of RAM, 2 CPU cores
 - Ubuntu 12.04.5 LTS (Precise Pangolin)
 - MySQL 5.5
-- PHP 5.3.10 with mod_rewrite
+- PHP 5.3.10 with mod_rewrite + modules recommended for optimal WordPress performance
 
 ## Installation
 
@@ -122,7 +122,7 @@ You should be good to go after setting up **/etc/hosts** to `192.168.2.242 jolly
     
     osascript -e 'tell application "Terminal" to quit' & exit;
 
-Chmod it by `chmod +x /usr/bin/forwardports` and run `forwardports`. You have to do this every time you are co-working in LAN.
+Chmod it by `chmod +x /usr/bin/forwardports` and run `forwardports`. You have to do this every time after reboot, if you are co-working in LAN.
 
 ## Sequel Pro settings for MySQL
 
