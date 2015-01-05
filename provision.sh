@@ -39,6 +39,9 @@ then
 	sudo apt-get update
 	sudo apt-get -y install mysql-server-5.5 php5-mysql apache2 git libapache2-mod-php5 php5-curl
 
+    # Install WordPress specific recommendations
+    sudo apt-get -y install php5-cli php5-dev php5-fpm php5-cgi php5-mysql php5-xmlrpc php5-curl php5-gd php5-imagick php-apc php-pear php5-imap php5-mcrypt php5-pspell
+
     # Create WordPress database
     # sudo mysql -uroot -p$DB_PASSWORD -e "CREATE DATABASE $DB_NAME"
 
