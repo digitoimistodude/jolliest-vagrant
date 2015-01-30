@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "precise64"
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
-  config.vm.network "forwarded_port", host: 80, guest: 8080, auto_correct: true
+  config.vm.network "forwarded_port", host: 80, guest: 80, auto_correct: true
   config.vm.network "private_network", ip: "10.1.2.3"
     config.ssh.forward_agent = true
   config.vm.network "public_network", ip: "192.168.0.242", bridge: "en6: USB Ethernet"
