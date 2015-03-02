@@ -132,13 +132,14 @@ If you need to use HTTPS-protocol, you will need your own certificate.
 
 1. Go to the directory you cloned this repo by `cd ~/jolliest-vagrant`
 2. SSH into your vagrant box: `vagrant ssh`
-3. `openssl genrsa -des3 -out server.key 1024`
-4. `openssl req -new -key server.key -out server.csr`
-5. `cp server.key server.key.org`
-6. `openssl rsa -in server.key.org -out server.key`
-7. `openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt`
-8. `sudo cp server.key /etc/apache2/ssl.key`
-9. `sudo cp server.crt /etc/apache2/ssl.crt`
+3. `sudo a2enmod ssl` to enable SSL
+4. `openssl genrsa -des3 -out server.key 1024`
+5. `openssl req -new -key server.key -out server.csr`
+6. `cp server.key server.key.org`
+7. `openssl rsa -in server.key.org -out server.key`
+8. `openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt`
+9. `sudo cp server.key /etc/apache2/ssl.key`
+10. `sudo cp server.crt /etc/apache2/ssl.crt`
 
 Exit SSH and update your site vhost in `~/jolliest-vagrant/vhosts/vhostname.dev.conf` by adding this
 
@@ -159,7 +160,7 @@ Exit SSH and update your site vhost in `~/jolliest-vagrant/vhosts/vhostname.dev.
       SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl-unclean-shutdown
     </VirtualHost>
 
-10. `vagrant provision` and you should be able to navigate to https://example.dev and start developing.
+11. `vagrant provision` and you should be able to navigate to https://example.dev and start developing.
 
 ## Sequel Pro settings for MySQL
 
