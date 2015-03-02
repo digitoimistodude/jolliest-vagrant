@@ -124,6 +124,43 @@ You should be good to go after setting up **/etc/hosts** to `192.168.2.242 jolly
 
 Chmod it by `chmod +x /usr/bin/forwardports` and run `forwardports`. You have to do this every time after reboot, if you are co-working in LAN.
 
+## SSL / HTTPS
+
+If you need to use HTTPS-protocol, you will need your own certificate.
+
+### Create a self-signed SSL Certificate for jolliest-vagrant
+
+1. Go to the directory you cloned this repo by `cd ~/jolliest-vagrant`
+2. SSH into your vagrant box: `vagrant ssh`
+3. `openssl genrsa -des3 -out server.key 1024`
+4. `openssl req -new -key server.key -out server.csr`
+5. `cp server.key server.key.org`
+6. `openssl rsa -in server.key.org -out server.key`
+7. `openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt`
+8. `sudo cp server.key /etc/apache2/ssl.key`
+9. `sudo cp server.crt /etc/apache2/ssl.crt`
+
+Exit SSH and update your site vhost in `~/jolliest-vagrant/vhosts/vhostname.dev.conf` by adding this
+
+
+    <VirtualHost *:443>  
+      ServerAdmin webmaster@example
+      ServerName  example.dev
+      ServerAlias www.example.dev
+      DirectoryIndex index.html index.php
+      DocumentRoot /var/www/example
+      LogLevel warn
+      ErrorLog  /var/www/example/error.log
+      CustomLog /var/www/example/access.log combined
+
+      SSLEngine on
+      SSLCertificateFile /etc/apache2/ssl.crt
+      SSLCertificateKeyFile /etc/apache2/ssl.key
+      SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl-unclean-shutdown
+    </VirtualHost>
+
+10. `vagrant provision` and you should be able to navigate to https://example.dev and start developing.
+
 ## Sequel Pro settings for MySQL
 
 Choose **SSH** tab and add following settings.
