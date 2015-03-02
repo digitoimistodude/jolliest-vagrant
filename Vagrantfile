@@ -14,8 +14,8 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "~/Projects", "/var/www", id: "core", :nfs => true, :mount_options => ['nolock,vers=3,udp,actimeo=2']
 
   config.vm.provider "virtualbox" do |v|
-    v.customize ["modifyvm", :id, "--memory", "4096", "--ioapic", "on"]
-    v.customize ["modifyvm", :id, "--cpus", "4"]
+    v.customize ["modifyvm", :id, "--memory", "2048", "--ioapic", "on"]
+    v.customize ["modifyvm", :id, "--cpus", "2"]
     v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
     v.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
   end
