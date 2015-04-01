@@ -12,7 +12,7 @@ Tried  to make up distinctive name for this and noticed *server for multiple pro
 
 ## Recommendations
 
-1. Mac OS X
+1. Mac OS X or Linux
 2. Simple knowledge of web servers
 3. WordPress projects under the same folder
 4. [wpstack-rolle](https://github.com/ronilaukkarinen/wpstack-rolle) in use
@@ -27,7 +27,7 @@ Tried  to make up distinctive name for this and noticed *server for multiple pro
 ## Installation
 
 1. Install [Virtualbox](https://www.virtualbox.org/)
-2. Install vagrant (`brew install vagrant` on OS X powered by [Homebrew](http://brew.sh/))
+2. Install [vagrant](http://www.vagrantup.com) (**Mac OS X** [Homebrew](http://brew.sh/): `brew install vagrant`)
 3. Install vagrant-triggers with command `vagrant plugin install vagrant-triggers`
 4. Clone this repo to your home directory
 5. Modify **Vagrantfile**: `config.vm.box` and `config.vm.box_url` to match your production server OS, `config.vm.network` for IP (I recommend it to be `10.1.2.3` to prevent collisions with other subnets)
