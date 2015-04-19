@@ -14,9 +14,9 @@ Tried  to make up distinctive name for this and noticed *server for multiple pro
 
 1. [Installation](#installation)
 2. [Post-installations](#post-installations)
-  1. [Installing FastCGI](#installing-fastcgi)
-  2. [Installing Alternative PHP cache](#installing-alternative-php-cache)
-  3. [More speed with configs](#more-speed-with-configs)
+  1. [Installing FastCGI](#1-installing-fastcgi)
+  2. [Installing Alternative PHP cache](#2-installing-alternative-php-cache)
+  3. [More speed with configs](#3-more-speed-with-configs)
 3. [How to add new vhost](#how-to-add-new-vhost)
 4. [Connecting with another computer in LAN](#connecting-with-another-computer-in-lan)
 5. [Port forwarding (optional)](#port-forwarding-optional)
