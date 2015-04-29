@@ -10,6 +10,8 @@ Chef and puppet are crazy by their configurations and learning curve. Managed to
 
 Tried  to make up distinctive name for this and noticed *server for multiple projects* anagrams to *scrump of jolliest perverter*. That's why this is the **jolliest vagrant** ever.
 
+To start this vagrant box, always run `vagrant up --provision`, with provision -hook to ensure all the stuff are loaded up properly.
+
 ## Recommendations
 
 1. Mac OS X or Linux
@@ -34,7 +36,7 @@ Tried  to make up distinctive name for this and noticed *server for multiple pro
 6. If you store your projects in different folder than *~/Projects*, change the correct path to `config.vm.synced_folder`
 7. Edit or add packages to match your production server packages in **provision.sh** if needed
 8. Add `10.1.2.3 somesite.dev` to your **/etc/hosts**
-9. Run `vagrant up`. This can take a moment.
+9. Run `vagrant up --provision`. This can take a moment.
 
 If you make any changes to **Vagrantfile**, run `vagrant reload` or `vagrant up --provision` if the server is not running, or if you change **provision.sh** while running, run `vagrant provision`.
 
