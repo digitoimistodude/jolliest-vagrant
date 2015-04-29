@@ -37,8 +37,8 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 8. [Installing Phpmyadmin (optional)](#installing-phpmyadmin-optional)
 9. [Sequel Pro settings for MySQL](#sequel-pro-settings-for-mysql)
 10. [Troubleshooting and issues](#troubleshooting-and-issues)
-  1. [Connection timeout](#1-connection-timeout)
-  2. [Other issues](#2-other-issues)
+  1. [Connection timeout](#connection-timeout)
+  2. [Other issues](#other-issues)
 
 ## Recommendations
 
