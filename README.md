@@ -1,16 +1,26 @@
 # Jolliest vagrant
 
-This story won't be short. 
-
 **tl;dr;** This is a simple vagrant server with minimal provisioning, originally created for local development environment for multiple WordPress projects.
 
-So... I created already two vagrant-repositories before this one. Started to modify them to my needs and noticed that commit after commit I got more and more stuck with stuff I didn't need or wasn't patient enough to learn how to configure thoroughly. So ended up removing those repositories and learn everything from scratch. There are too many vagrant setups and I have probably tried most of them.
+This vagrant server can be used as plain local server for serving your files or testing static PHP, but it's also perfect for WordPress development.
+
+Currently tested on Linux and Mac OS X.
+
+## Background
+
+I tried about 30 vagrant setups before this box. I created already two vagrant-repositories before this one. Started to modify them to my needs and noticed that commit after commit I got more and more stuck with stuff I didn't need or wasn't patient enough to learn how to configure thoroughly.
+
+After bashing my head to the wall enough, ended up removing those repositories and learn everything from scratch. There are too many vagrant setups and I have probably tried most of them.
 
 Chef and puppet are crazy by their configurations and learning curve. Managed to handle them but after all I'm more of a bash guy, so naturally this version of my vagrant setup will use only simple bash script. Keep it simple, stupid.
 
+## The story behind the name
+
 Tried  to make up distinctive name for this and noticed *server for multiple projects* anagrams to *scrump of jolliest perverter*. That's why this is the **jolliest vagrant** ever.
 
-To start this vagrant box, always run `vagrant up --provision`, with provision -hook to ensure all the stuff are loaded up properly.
+## Usage
+
+To start this vagrant box, always run `vagrant up --provision`, with provision -hook to ensure all the stuff are loaded up properly. Skip to the [Installation](#installation), if you are ready to start.
 
 ## Table of contents
 
@@ -25,6 +35,9 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 6. [SSL / HTTPS (optional)](#ssl-https-optional)
 7. [Installing Phpmyadmin (optional)](#installing-phpmyadmin-optional)
 8. [Sequel Pro settings for MySQL](#sequel-pro-settings-for-mysql)
+9. [Troubleshooting and issues](#troubleshooting-and-issues)
+  1. [Connection timeout](#1-connection-timeout)
+  2. [Other issues](#2-other-issues)
 
 ## Recommendations
 
@@ -53,6 +66,8 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 9. Run `vagrant up --provision`. This can take a moment.
 
 If you make any changes to **Vagrantfile**, run `vagrant reload` or `vagrant up --provision` if the server is not running, or if you change **provision.sh** while running, run `vagrant provision`.
+
+You can always see the apache status by `vagrant ssh`'ing to your vagrant box and typing `sudo service apache2 status`. If it's not started, run `sudo service apache2 start`.
 
 ## Post-installations
 
@@ -191,6 +206,26 @@ If you use Mac OS X I recommend Sequel Pro, but in other cases phpmyadmin comes 
 6. `sudo pico -w /etc/apache2/apache2.conf` and add `Include /etc/phpmyadmin/apache.conf` to the bottom
 7. Restart apache with `sudo service apache2 restart`
 8. Now you can access your phpmyadmin in [localhost/phpmyadmin](http://localhost/phpmyadmin) (if not, make sure you have `10.1.2.3 localhost` added to your /etc/hosts (on your PC, NOT in vagrant ssh) and you have invoked the [ssh LAN command](#connecting-with-another-computer-in-lan).
+
+## Troubleshooting and issues
+
+### Connection timeout
+
+    ==> default: Waiting for machine to boot. This may take a few minutes...
+        default: SSH address: 127.0.0.1:2222
+        default: SSH username: vagrant
+        default: SSH auth method: private key
+        default: Error: Connection timeout. Retrying...
+        default: Error: Connection timeout. Retrying...
+        default: Error: Connection timeout. Retrying...
+        default: Error: Connection timeout. Retrying...
+        ...
+
+If you encounter this issue, you have probably messed up with your SSH configs. I did not find any solution to this one other than remove all the virtual machines from Virtualbox and go through this setup again...
+
+### Other issues
+
+In any issue, error or trouble, please open an issue to [issue tracker](https://github.com/ronilaukkarinen/jolliest-vagrant/issues).
 
 ## Sequel Pro settings for MySQL
 
