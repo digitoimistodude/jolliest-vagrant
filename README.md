@@ -228,7 +228,11 @@ If you use Mac OS X I recommend Sequel Pro, but in other cases phpmyadmin comes 
         default: Error: Connection timeout. Retrying...
         ...
 
-If you encounter this issue, you have probably messed up with your SSH configs. I did not find any solution to this one other than remove all the virtual machines from Virtualbox and go through this setup again...
+If you encounter this very bizarre issue, you have probably messed up with your SSH configs. Please ensure you have set up your SSH precicely with [Bitbucket's "Set up SSH for Git"](https://confluence.atlassian.com/display/BITBUCKET/Set+up+SSH+for+Git) before setting up vagrant.
+
+The best is to `vagrant destroy` or remove all traces of vagrant and try from scratch.
+
+Also, you may want to disable `nfs` and `mount_options` in your `Vagrantfile`. That helped me two times.
 
 ### Other issues
 
