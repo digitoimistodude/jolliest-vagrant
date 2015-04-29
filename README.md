@@ -12,12 +12,26 @@ Tried  to make up distinctive name for this and noticed *server for multiple pro
 
 To start this vagrant box, always run `vagrant up --provision`, with provision -hook to ensure all the stuff are loaded up properly.
 
+## Table of contents
+
+1. [Installation](#installation)
+2. [Post-installations](#post-installations)
+  1. [Installing FastCGI](#1-installing-fastcgi)
+  2. [Installing Alternative PHP cache](#2-installing-alternative-php-cache)
+  3. [More speed with configs](#3-more-speed-with-configs)
+3. [How to add new vhost](#how-to-add-new-vhost)
+4. [Connecting with another computer in LAN](#connecting-with-another-computer-in-lan)
+5. [Port forwarding (optional)](#port-forwarding-optional)
+6. [SSL / HTTPS (optional)](#ssl-https-optional)
+7. [Installing Phpmyadmin (optional)](#installing-phpmyadmin-optional)
+8. [Sequel Pro settings for MySQL](#sequel-pro-settings-for-mysql)
+
 ## Recommendations
 
 1. Mac OS X or Linux
 2. Simple knowledge of web servers
 3. WordPress projects under the same folder
-4. [wpstack-rolle](https://github.com/ronilaukkarinen/wpstack-rolle) in use
+4. [dudestack](https://github.com/ronilaukkarinen/dudestack) in use
 
 ## What's inside?
 
@@ -54,8 +68,7 @@ Another speed improving trick is to use FastCGI as Server API instead of the def
 
 1. `sudo apt-get -y install apache2-mpm-worker libapache2-mod-fastcgi php5-fpm php5`
 2. `sudo a2enmod actions fastcgi alias`
-3. `service apache2 restart`
-4. `sudo pico -w /etc/apache2/conf.d/php5-fpm.conf`
+3. `sudo pico -w /etc/apache2/conf.d/php5-fpm.conf`
 
         <IfModule mod_fastcgi.c>
             AddHandler php5-fcgi .php
@@ -63,9 +76,9 @@ Another speed improving trick is to use FastCGI as Server API instead of the def
             Alias /php5-fcgi /usr/lib/cgi-bin/php5-fcgi
             FastCgiExternalServer /usr/lib/cgi-bin/php5-fcgi -host 127.0.0.1:9000 -pass-header Authorization
         </IfModule>
-5. `sudo service apache2 restart`
-6. `sudo echo "<?php phpinfo();" > /var/www/info.php`
-7. Now you should see *FPM/FastCGI* in the third row "Server API" when you go to [localhost/info.php](http://localhost/info.php)
+4. `sudo service apache2 restart`
+5. `sudo echo "<?php phpinfo();" > /var/www/info.php`
+6. Now you should see *FPM/FastCGI* in the third row "Server API" when you go to [localhost/info.php](http://localhost/info.php)
 
 #### 2. Installing Alternative PHP cache
 
@@ -110,8 +123,10 @@ Run `vagrant provision` and boom! http://jolly.dev points to your project file.
 You should be good to go after setting up **/etc/hosts** to `192.168.2.242 jolly.dev` (depending on your local subnet of course) on remote computer. If you have problems like I had, run this command on your vagrant host PC (not inside vagrant ssh!):
 
     sudo ssh -p 2222 -gNfL 80:localhost:80 vagrant@localhost -i ~/.vagrant.d/insecure_private_key
+    
+This also helps in some cases where you are unable to open http://localhost in browser window.
 
-### Port forwarding
+### Port forwarding (optional)
 
 `Vagrantfile` has port forwarding included, but Mac OS X has some limitations. If .dev-urls are not reachable from local area network, please add this to `/usr/bin/forwardports` by `sudo nano /usr/bin/forwardports`:
 
@@ -126,7 +141,7 @@ You should be good to go after setting up **/etc/hosts** to `192.168.2.242 jolly
 
 Chmod it by `chmod +x /usr/bin/forwardports` and run `forwardports`. You have to do this every time after reboot, if you are co-working in LAN.
 
-## SSL / HTTPS
+## SSL / HTTPS (optional)
 
 If you need to use HTTPS-protocol, you will need your own certificate.
 
@@ -163,6 +178,19 @@ Exit SSH and update your site vhost in `~/jolliest-vagrant/vhosts/vhostname.dev.
     </VirtualHost>
 
 11. `vagrant provision` and you should be able to navigate to https://example.dev and start developing.
+
+## Installing Phpmyadmin (optional)
+
+If you use Mac OS X I recommend Sequel Pro, but in other cases phpmyadmin comes pretty handy. Based on [Digital Ocean's tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04).
+
+1. Go to the directory you cloned this repo by `cd ~/jolliest-vagrant`
+2. SSH into your vagrant box: `vagrant ssh`
+3. Install phpmyadmin with `sudo apt-get install phpmyadmin apache2-utils`
+4. Choose apache2 when asked, choose yes in the next question about dbconfig-common
+5. Type `vagrant` every time when a password is asked
+6. `sudo pico -w /etc/apache2/apache2.conf` and add `Include /etc/phpmyadmin/apache.conf` to the bottom
+7. Restart apache with `sudo service apache2 restart`
+8. Now you can access your phpmyadmin in [localhost/phpmyadmin](http://localhost/phpmyadmin) (if not, make sure you have `10.1.2.3 localhost` added to your /etc/hosts (on your PC, NOT in vagrant ssh) and you have invoked the [ssh LAN command](#connecting-with-another-computer-in-lan).
 
 ## Sequel Pro settings for MySQL
 
