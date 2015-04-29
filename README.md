@@ -35,7 +35,7 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 
 ## What's inside?
 
-- Vagrantfile with speed optimizations, nfs mounts, 4 GB of RAM, 2 CPU cores
+- Vagrantfile with speed optimizations, nfs mounts, 2 GB of RAM, 2 CPU cores
 - Ubuntu 12.04.5 LTS (Precise Pangolin)
 - MySQL 5.5
 - PHP 5.3.10 with mod_rewrite + modules recommended for optimal WordPress performance
