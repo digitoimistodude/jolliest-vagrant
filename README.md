@@ -30,12 +30,13 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
   2. [Installing Alternative PHP cache](#2-installing-alternative-php-cache)
   3. [More speed with configs](#3-more-speed-with-configs)
 3. [How to add new vhost](#how-to-add-new-vhost)
-4. [Connecting with another computer in LAN](#connecting-with-another-computer-in-lan)
-5. [Port forwarding (optional)](#port-forwarding-optional)
-6. [SSL / HTTPS (optional)](#ssl-https-optional)
-7. [Installing Phpmyadmin (optional)](#installing-phpmyadmin-optional)
-8. [Sequel Pro settings for MySQL](#sequel-pro-settings-for-mysql)
-9. [Troubleshooting and issues](#troubleshooting-and-issues)
+4. [How to remove a project or vhost](#how-to-remove-a-project-or-vhost)
+5. [Connecting with another computer in LAN](#connecting-with-another-computer-in-lan)
+6. [Port forwarding (optional)](#port-forwarding-optional)
+7. [SSL / HTTPS (optional)](#ssl-https-optional)
+8. [Installing Phpmyadmin (optional)](#installing-phpmyadmin-optional)
+9. [Sequel Pro settings for MySQL](#sequel-pro-settings-for-mysql)
+10. [Troubleshooting and issues](#troubleshooting-and-issues)
   1. [Connection timeout](#1-connection-timeout)
   2. [Other issues](#2-other-issues)
 
@@ -132,6 +133,12 @@ It's simple to manage multiple projects with apache's sites-enabled configs. If 
     </VirtualHost>
 
 Run `vagrant provision` and boom! http://jolly.dev points to your project file.
+
+### How to remove a project or vhost
+
+If you remove a project from Projects folder, or rename it, you should also remove/rename `vhosts/projectname.dev.conf` correspondingly and make sure after `vagrant ssh` you don't have that conf to point nonexisting files in `/etc/apache2/sites-enabled` and `/etc/apache2/sites-available`. Otherwise the server (apache) wont' start!
+
+For example, if we create test project to ~/Projects/test and then remove the folder, next time you are starting up apache fails. You will have to `vagrant ssh` and `sudo rm /etc/apache2/sites-enabled/test.dev.conf && sudo rm /etc/apache2/sites-available/test.dev.conf && /vagrant/vhosts/test.dev.conf`.
 
 ## Connecting with another computer in LAN
 
