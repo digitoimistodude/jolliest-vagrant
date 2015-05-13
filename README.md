@@ -201,6 +201,8 @@ Exit SSH and update your site vhost in `~/Projects/jolliest-vagrant/vhosts/vhost
 
 11. `vagrant provision` and you should be able to navigate to https://example.dev and start developing.
 
+**Please note:** You can only have one SSL project in the same time, so move VirtualHost entry to the other project conf when you are switching projects.
+
 ## Installing Phpmyadmin (optional)
 
 If you use Mac OS X I recommend Sequel Pro, but in other cases phpmyadmin comes pretty handy. Based on [Digital Ocean's tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04).
