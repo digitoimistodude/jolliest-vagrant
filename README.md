@@ -236,7 +236,7 @@ The best is to `vagrant destroy` or remove all traces of vagrant and try from sc
 
 Also, you may want to disable `nfs` and `mount_options` in your `Vagrantfile`. That helped me two times.
 
-You can also try with precise32 box and with 1 CPU.
+**Baseline**: My vagrant box doesn't like multiple boxes with SSH, that could cause problems. If nothing else seems to work, it may be 64bit box virtualization issue with your machine. In this case you can try to change precise64 to precise32 box and with 1 CPU according to [this](http://stackoverflow.com/questions/24620599/error-vt-x-not-available-for-vagrant-machine-inside-virtualbox#comment43905920_26475597).
 
 ### Other issues
 
