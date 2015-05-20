@@ -236,6 +236,8 @@ The best is to `vagrant destroy` or remove all traces of vagrant and try from sc
 
 Also, you may want to disable `nfs` and `mount_options` in your `Vagrantfile`. That helped me two times.
 
+You can also try with precise32 box and with 1 CPU.
+
 ### Other issues
 
 In any issue, error or trouble, please open an issue to [issue tracker](https://github.com/ronilaukkarinen/jolliest-vagrant/issues).
