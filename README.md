@@ -230,11 +230,19 @@ If you use Mac OS X I recommend Sequel Pro, but in other cases phpmyadmin comes 
         default: Error: Connection timeout. Retrying...
         ...
 
-If you encounter this very bizarre issue, you have probably messed up with your SSH configs. Please ensure you have set up your SSH precicely with [Bitbucket's "Set up SSH for Git"](https://confluence.atlassian.com/display/BITBUCKET/Set+up+SSH+for+Git) before setting up vagrant.
+If you encounter this very bizarre issue, 
 
-The best is to `vagrant destroy` or remove all traces of vagrant and try from scratch.
+1. probably something is blocking your ports. Please try to change `auto_correct` to `false` to see if it's about ports. If it is, change guest port to `8080` or some random number over `1024`. Then, change port forwarding settings from `8080 -> 80` or from any port number you specified in guest port section.
 
-Also, you may want to disable `nfs` and `mount_options` in your `Vagrantfile`. That helped me two times.
+2. you have probably messed up with your SSH configs. Please ensure you have set up your SSH precicely with [Bitbucket's "Set up SSH for Git"](https://confluence.atlassian.com/display/BITBUCKET/Set+up+SSH+for+Git) before setting up vagrant.
+
+3. The best is to `vagrant destroy` or remove all traces of vagrant and try from scratch.
+
+4. Also, you may want to disable `nfs` and `mount_options` in your `Vagrantfile`. That helped me two times.
+
+5. Try to boot your vm manually using `Virtualbox`, or add `v.gui = true` inside `config.vm.provider "virtualbox" do |v|` and see if that produces any errors.
+
+6. Open an issue to [issue tracker](https://github.com/ronilaukkarinen/jolliest-vagrant/issues) so we can test and discuss this further.
 
 **Baseline**: My vagrant box doesn't like multiple boxes with SSH, that could cause problems. If nothing else seems to work, it may be 64bit box virtualization issue with your machine. In this case you can try to change precise64 to precise32 box and with 1 CPU according to [this](http://stackoverflow.com/questions/24620599/error-vt-x-not-available-for-vagrant-machine-inside-virtualbox#comment43905920_26475597).
 
