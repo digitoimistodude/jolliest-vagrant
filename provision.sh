@@ -66,8 +66,8 @@ then
 	
     # Install curl & wp-cli
     sudo apt-get -y install curl
-    cd ~/ && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-    sudo mv wp-cli.phar /usr/bin/wp && sudo chmod +x /usr/bin/wp
+    # cd ~/ && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+    # sudo mv wp-cli.phar /usr/bin/wp && sudo chmod +x /usr/bin/wp
 
     # Restart machine, obviously
     sudo service apache2 restart
