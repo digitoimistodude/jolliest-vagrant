@@ -38,7 +38,8 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 9. [Sequel Pro settings for MySQL](#sequel-pro-settings-for-mysql)
 10. [Troubleshooting and issues](#troubleshooting-and-issues)
   1. [Connection timeout](#connection-timeout)
-  2. [Other issues](#other-issues)
+  2. [Corrupted JS/CSS](#corrupted-jscss)
+  3. [Other issues](#other-issues)
 
 ## Recommendations
 
