@@ -246,6 +246,10 @@ If you encounter this very bizarre issue,
 
 **Baseline**: My vagrant box doesn't like multiple boxes with SSH, that could cause problems. If nothing else seems to work, it may be 64bit box virtualization issue with your machine. In this case you can try to change precise64 to precise32 box and with 1 CPU according to [this](http://stackoverflow.com/questions/24620599/error-vt-x-not-available-for-vagrant-machine-inside-virtualbox#comment43905920_26475597).
 
+### Corrupted JS/CSS
+
+VirtualBox had a bug which may cause a file corruption. Adding `EnableSendfile off` to `/etc/apache2/httpd.conf` should fix this.
+
 ### Other issues
 
 In any issue, error or trouble, please open an issue to [issue tracker](https://github.com/ronilaukkarinen/jolliest-vagrant/issues).
