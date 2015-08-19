@@ -77,7 +77,7 @@ Since I want to make this as simple as possible and this will be the single VM f
 
 1. Make sure you are in your vagrant directory (`cd ~/Projects/jolliest-vagrant`) and SSH into your vagrant box by `vagrant ssh`
 2. You may want to remove the default "It works!" -page. Do this by `rm /var/www/index.html`
-3. `cd /var/www/` and `ls`. You should see all your projects and a directory listing when you go to localhost with your browser
+3. If you want to check that everything is okay and the folders are linked successfully, you can go to public folder by `cd /var/www/` and `ls`, then you should see all your projects and a directory listing when you go to localhost with your browser.
 
 #### 1. Installing FastCGI
 
