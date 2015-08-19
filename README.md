@@ -61,7 +61,7 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 2. Install [vagrant](http://www.vagrantup.com) (**Mac OS X** [Homebrew](http://brew.sh/): `brew install vagrant`)
 3. Install vagrant-triggers with command `vagrant plugin install vagrant-triggers`
 4. Clone this repo to your Projects directory (path `~/Projects/jolliest-vagrant` is depedant in [dudestack](https://github.com/ronilaukkarinen/dudestack))
-5. Modify **Vagrantfile**: `config.vm.box` and `config.vm.box_url` to match your production server OS, `config.vm.network` for IP (I recommend it to be `10.1.2.3` to prevent collisions with other subnets) (**For Linux** you need to remove `, :mount_options...` and you may not need config.trigger.after or part at all. Please remove parts that give you errors)
+5. *(Optional, do this for example if you want to use other image or encounter problems with included Vagrantfile)* Modify **Vagrantfile**: `config.vm.box` and `config.vm.box_url` to match your production server OS, `config.vm.network` for IP (I recommend it to be `10.1.2.3` to prevent collisions with other subnets) (**For Linux** you need to remove `, :mount_options...` and you may not need config.trigger.after or part at all. Please remove parts that give you errors)
 6. If you store your projects in different folder than *~/Projects*, change the correct path to `config.vm.synced_folder`
 7. Edit or add packages to match your production server packages in **provision.sh** if needed
 8. Add `10.1.2.3 somesite.dev` to your **/etc/hosts**
@@ -75,7 +75,7 @@ You can always see the apache status by `vagrant ssh`'ing to your vagrant box an
 
 Since I want to make this as simple as possible and this will be the single VM for multiple projects that does not need to change much over time, I want extra stuff to be installed manually.
 
-1. SSH to your vagrant box by `vagrant ssh`
+1. Make sure you are in your vagrant directory (`cd ~/Projects/jolliest-vagrant`) and SSH into your vagrant box by `vagrant ssh`
 2. You may want to remove the default "It works!" -page. Do this by `rm /var/www/index.html`
 3. `cd /var/www/` and `ls`. You should see all your projects and a directory listing when you go to localhost with your browser
 
@@ -209,7 +209,7 @@ Exit SSH and update your site vhost in `~/Projects/jolliest-vagrant/vhosts/vhost
 If you use Mac OS X I recommend Sequel Pro, but in other cases phpmyadmin comes pretty handy. Based on [Digital Ocean's tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04).
 
 1. Go to the directory you cloned this repo by `cd ~/Projects/jolliest-vagrant`
-2. SSH into your vagrant box: `vagrant ssh`
+2. Make sure you are in your vagrant directory (`cd ~/Projects/jolliest-vagrant`) and SSH into your vagrant box: `vagrant ssh`
 3. Install phpmyadmin with `sudo apt-get install phpmyadmin apache2-utils`
 4. Choose apache2 when asked, choose yes in the next question about dbconfig-common
 5. Type `vagrant` every time when a password is asked
