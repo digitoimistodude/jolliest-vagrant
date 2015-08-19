@@ -95,7 +95,9 @@ Another speed improving trick is to use FastCGI as Server API instead of the def
         </IfModule>
 4. `sudo service apache2 restart`
 5. `sudo echo "<?php phpinfo();" > /var/www/info.php`
-6. Now you should see *FPM/FastCGI* in the third row "Server API" when you go to [localhost/info.php](http://localhost/info.php)
+6. Exit vagrant with `exit`
+7. Add localhost to your machine's host file by running `sudo nano /etc/hosts` and add `10.1.2.3 localhost` to new line to the bottom of the file (save with `CTRL/Cmd + O`, exit with `CTRL/Cmd + X`)
+8. Now you should see *FPM/FastCGI* in the third row "Server API" when you go to [localhost/info.php](http://localhost/info.php)
 
 #### 2. Installing Alternative PHP cache
 
