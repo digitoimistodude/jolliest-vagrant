@@ -114,7 +114,13 @@ Alternative PHP cache speeds up PHP processing. This tutorial is based on [Digit
 
 #### 3. More speed with configs
 
-I have attached **confs** folder which includes custom *my.cnf* and *php.ini* for you to tweak on. After customizing them further just ssh to vagrant and `sudo cp /vagrant/confs/my.cnf /etc/mysql/my.cnf` and `sudo cp /vagrant/confs/php.ini /etc/php5/fpm/php.ini`. Then run proper restarts `sudo service apache2 restart  && sudo service php5-fpm restart && sudo service mysql restart`
+I have attached **confs** folder which includes custom *my.cnf* and *php.ini* for you to tweak on. 
+
+1. *(Optional)* Customize configs further
+2. SSH into your vagrant box (`cd ~/Projects/jolliest-vagrant && vagrant ssh`)
+3. Run command `sudo cp /vagrant/confs/my.cnf /etc/mysql/my.cnf && sudo cp /vagrant/confs/php.ini /etc/php5/fpm/php.ini`
+4. Run proper restarts `sudo service apache2 restart && sudo service php5-fpm restart && sudo service mysql restart`
+5. Config update done! If you want to edit configs later, SSH into vagrant and edit them directly with nano, for example `nano /etc/mysql/my.cnf` etc.
 
 ### How to add new vhost
 
