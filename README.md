@@ -95,7 +95,7 @@ Another speed improving trick is to use FastCGI as Server API instead of the def
         </IfModule>
 4. `sudo service apache2 restart`
 5. `sudo echo "<?php phpinfo();" > /var/www/info.php`
-6. Now you should see *FPM/FastCGI* in the third row "Server API" when you go to [http://10.1.2.3/info.php](http://10.1.2.3/info.php)
+6. Now you should see *FPM/FastCGI* in the third row "Server API" when you go to [10.1.2.3/info.php](http://10.1.2.3/info.php)
 
 #### 2. Installing Alternative PHP cache
 
@@ -110,7 +110,7 @@ Alternative PHP cache speeds up PHP processing. This tutorial is based on [Digit
         apc.stat = 0
 
 4. `sudo cp /usr/share/php/apc.php /var/www` and `sudo service apache2 restart  && sudo service php5-fpm restart`
-5. You should now see APC info when you go to [localhost/apc.php](http://localhost/apc.php) with your browser
+5. You should now see APC info when you go to [10.1.2.3/apc.php](http://10.1.2.3/apc.php) with your browser
 
 #### 3. More speed with configs
 
