@@ -171,7 +171,7 @@ If you need to use HTTPS-protocol, you will need your own certificate.
 ### Create a self-signed SSL Certificate for jolliest-vagrant
 
 1. Go to the directory you cloned this repo by `cd ~/Projects/jolliest-vagrant`
-2. SSH into your vagrant box: `vagrant ssh`
+2. Make sure you are in your vagrant directory (`cd ~/Projects/jolliest-vagrant`) and SSH into your vagrant box: `vagrant ssh`
 3. `sudo a2enmod ssl` to enable SSL
 4. `openssl genrsa -des3 -out server.key 1024`
 5. `openssl req -new -key server.key -out server.csr`
