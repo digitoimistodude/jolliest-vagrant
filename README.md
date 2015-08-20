@@ -58,14 +58,15 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 ## Installation
 
 1. Install [Virtualbox](https://www.virtualbox.org/)
-2. Install [vagrant](http://www.vagrantup.com) (**Mac OS X** [Homebrew](http://brew.sh/): `brew install vagrant`)
-3. Install vagrant-triggers with command `vagrant plugin install vagrant-triggers`
-4. Clone this repo to your Projects directory (path `~/Projects/jolliest-vagrant` is depedant in [dudestack](https://github.com/ronilaukkarinen/dudestack))
-5. *(Optional, do this for example if you want to use other image or encounter problems with included Vagrantfile)* Modify **Vagrantfile**: `config.vm.box` and `config.vm.box_url` to match your production server OS, `config.vm.network` for IP (I recommend it to be `10.1.2.3` to prevent collisions with other subnets) (**For Linux** you need to remove `, :mount_options...` if problems occur with starting the server. Please remove parts that give you errors)
-6. If you store your projects in different folder than *~/Projects*, change the correct path to `config.vm.synced_folder`
-7. Edit or add packages to match your production server packages in **provision.sh** if needed
-8. Add `10.1.2.3 somesite.dev` to your **/etc/hosts**
-9. Run `vagrant up --provision`. This can take a moment.
+2. Start Virtualbox, check updates and install all the latest versions of Virtualbox and Oracle VM Virtualbox Extension Pack, if asked
+3. Install [vagrant](http://www.vagrantup.com) (**Mac OS X** [Homebrew](http://brew.sh/): `brew install vagrant`)
+4. Install vagrant-triggers with command `vagrant plugin install vagrant-triggers`
+5. Clone this repo to your Projects directory (path `~/Projects/jolliest-vagrant` is depedant in [dudestack](https://github.com/ronilaukkarinen/dudestack))
+6. *(Optional, do this for example if you want to use other image or encounter problems with included Vagrantfile)* Modify **Vagrantfile**: `config.vm.box` and `config.vm.box_url` to match your production server OS, `config.vm.network` for IP (I recommend it to be `10.1.2.3` to prevent collisions with other subnets) (**For Linux** you need to remove `, :mount_options...` if problems occur with starting the server. Please remove parts that give you errors)
+7. If you store your projects in different folder than *~/Projects*, change the correct path to `config.vm.synced_folder`
+8. Edit or add packages to match your production server packages in **provision.sh** if needed
+9. Add `10.1.2.3 somesite.dev` to your **/etc/hosts**
+10. Run `vagrant up --provision`. This can take a moment.
 
 If you make any changes to **Vagrantfile**, run `vagrant reload` or `vagrant up --provision` if the server is not running, or if you change **provision.sh** while running, run `vagrant provision`.
 
