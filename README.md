@@ -103,8 +103,8 @@ Another speed improving trick is to use FastCGI as Server API instead of the def
 
 Alternative PHP cache speeds up PHP processing. This tutorial is based on [Digital Ocean's article](https://www.digitalocean.com/community/tutorials/how-to-install-alternative-php-cache-apc-on-a-cloud-server-running-ubuntu-12-04):
 
-1. `sudo apt-get -y install php-pear php5-dev make libpcre3-dev` (enter and accept every possible step with their defaults)
-2. `sudo pecl install apc`, choose or press return when asked
+1. `sudo apt-get -y install php-pear php5-dev make libpcre3-dev`
+2. `sudo pecl install apc`, choose or press return when asked (enter and accept every possible step with their defaults)
 3. `sudo pico -w /etc/php5/fpm/php.ini` (normally */etc/php5/apache2/php.ini*, but we are using fpm), scroll all the way down and add to the last line:
 
         extension = apc.so
