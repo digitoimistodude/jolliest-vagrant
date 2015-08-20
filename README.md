@@ -38,8 +38,9 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 9. [Sequel Pro settings for MySQL](#sequel-pro-settings-for-mysql)
 10. [Troubleshooting and issues](#troubleshooting-and-issues)
   1. [Connection timeout](#connection-timeout)
-  2. [Corrupted JS/CSS](#corrupted-jscss)
-  3. [Other issues](#other-issues)
+  2. [SSH command responded with a non-zero exit status](#ssh-command-responded-with-a-non-zero-exit-status)
+  3. [Corrupted JS/CSS](#corrupted-jscss)
+  4. [Other issues](#other-issues)
 
 ## Recommendations
 
@@ -252,6 +253,28 @@ If you encounter this very bizarre issue,
 5. Try to boot your vm manually using `Virtualbox`, or add `v.gui = true` inside `config.vm.provider "virtualbox" do |v|` and see if that produces any errors.
 
 6. Open an issue to [issue tracker](https://github.com/digitoimistodude/jolliest-vagrant/issues) so we can test and discuss this further.
+
+Earlier this issue was caused because I used 64bit image. On Mac OS X there seems to be problems with virtualization in 64bit environments. Today my vagrant box uses precise32 instead of precise64 and this change has fixed this issue for good. If you still encounter issues with SSH, please [let me know](https://github.com/digitoimistodude/jolliest-vagrant/issues).
+
+### SSH command responded with a non-zero exit status
+
+    ==> default: Checking for guest additions in VM...
+    ==> default: Configuring and enabling network interfaces...
+    The following SSH command responded with a non-zero exit status.
+    Vagrant assumes that this means the command failed!
+
+    /sbin/ifdown eth1 2> /dev/null
+
+    Stdout from the command:
+    
+    
+    
+    Stderr from the command:
+    
+    stdin: is not a tty
+    
+
+This is related to the timeout / SSH issue. Please reproduce the same steps in [Connection timeout](#connection-timeout) section.
 
 ### Corrupted JS/CSS
 

@@ -3,8 +3,8 @@
 
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "precise64"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box = "precise32"
+  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
   config.vm.network "forwarded_port", host: 80, guest: 80, auto_correct: true
   config.vm.network "forwarded_port", host: 443, guest: 443, auto_correct: true
