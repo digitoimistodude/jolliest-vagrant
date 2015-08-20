@@ -61,7 +61,7 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 2. Install [vagrant](http://www.vagrantup.com) (**Mac OS X** [Homebrew](http://brew.sh/): `brew install vagrant`)
 3. Install vagrant-triggers with command `vagrant plugin install vagrant-triggers`
 4. Clone this repo to your Projects directory (path `~/Projects/jolliest-vagrant` is depedant in [dudestack](https://github.com/ronilaukkarinen/dudestack))
-5. *(Optional, do this for example if you want to use other image or encounter problems with included Vagrantfile)* Modify **Vagrantfile**: `config.vm.box` and `config.vm.box_url` to match your production server OS, `config.vm.network` for IP (I recommend it to be `10.1.2.3` to prevent collisions with other subnets) (**For Linux** you need to remove `, :mount_options...` and you may not need config.trigger.after or part at all. Please remove parts that give you errors)
+5. *(Optional, do this for example if you want to use other image or encounter problems with included Vagrantfile)* Modify **Vagrantfile**: `config.vm.box` and `config.vm.box_url` to match your production server OS, `config.vm.network` for IP (I recommend it to be `10.1.2.3` to prevent collisions with other subnets) (**For Linux** you need to remove `, :mount_options...` if problems occur with starting the server. Please remove parts that give you errors)
 6. If you store your projects in different folder than *~/Projects*, change the correct path to `config.vm.synced_folder`
 7. Edit or add packages to match your production server packages in **provision.sh** if needed
 8. Add `10.1.2.3 somesite.dev` to your **/etc/hosts**
