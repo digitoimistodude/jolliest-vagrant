@@ -46,7 +46,7 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 1. Mac OS X or Linux
 2. Simple knowledge of web servers
 3. WordPress projects under the same folder
-4. [dudestack](https://github.com/ronilaukkarinen/dudestack) in use
+4. [dudestack](https://github.com/digitoimistodude/dudestack) in use
 
 ## What's inside?
 
@@ -62,7 +62,7 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 3. Install [vagrant](http://www.vagrantup.com) (**Mac OS X** [Homebrew](http://brew.sh/): `brew install vagrant`)
 4. Install vagrant-triggers with command `vagrant plugin install vagrant-triggers`
 5. Install VirtualBox Guest Additions -updater vagrant-vbguest with command `vagrant plugin install vagrant-vbguest`
-6. Clone this repo to your Projects directory (path `~/Projects/jolliest-vagrant` is depedant in [dudestack](https://github.com/ronilaukkarinen/dudestack))
+6. Clone this repo to your Projects directory (path `~/Projects/jolliest-vagrant` is depedant in [dudestack](https://github.com/digitoimistodude/dudestack))
 7. *(Optional, do this for example if you want to use other image or encounter problems with included Vagrantfile)* Modify **Vagrantfile**: `config.vm.box` and `config.vm.box_url` to match your production server OS, `config.vm.network` for IP (I recommend it to be `10.1.2.3` to prevent collisions with other subnets) (**For Linux** you need to remove `, :mount_options...` if problems occur with starting the server. Please remove parts that give you errors)
 8. If you store your projects in different folder than *~/Projects*, change the correct path to `config.vm.synced_folder`
 9. Edit or add packages to match your production server packages in **provision.sh** if needed
@@ -251,7 +251,7 @@ If you encounter this very bizarre issue,
 
 5. Try to boot your vm manually using `Virtualbox`, or add `v.gui = true` inside `config.vm.provider "virtualbox" do |v|` and see if that produces any errors.
 
-6. Open an issue to [issue tracker](https://github.com/ronilaukkarinen/jolliest-vagrant/issues) so we can test and discuss this further.
+6. Open an issue to [issue tracker](https://github.com/digitoimistodude/jolliest-vagrant/issues) so we can test and discuss this further.
 
 **Baseline**: My vagrant box doesn't like multiple boxes with SSH, that could cause problems. If nothing else seems to work, it may be 64bit box virtualization issue with your machine. In this case you can try to change precise64 to precise32 box and with 1 CPU according to [this](http://stackoverflow.com/questions/24620599/error-vt-x-not-available-for-vagrant-machine-inside-virtualbox#comment43905920_26475597).
 
@@ -261,7 +261,7 @@ VirtualBox had a bug which may cause a file corruption. Adding `EnableSendfile o
 
 ### Other issues
 
-In any issue, error or trouble, please open an issue to [issue tracker](https://github.com/ronilaukkarinen/jolliest-vagrant/issues).
+In any issue, error or trouble, please open an issue to [issue tracker](https://github.com/digitoimistodude/jolliest-vagrant/issues).
 
 ## Sequel Pro settings for MySQL
 
