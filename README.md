@@ -6,6 +6,14 @@ This vagrant server can be used as plain local server for serving your files or 
 
 Currently tested on Linux and Mac OS X.
 
+## What's inside?
+
+| Vagrantfile with speed optimizations, nfs mounts, 2 GB of RAM, 2 CPU cores |
+| Ubuntu 12.04.5 LTS (Precise Pangolin) |
+| MySQL 5.5 |
+| PHP 5.3.10 with mod_rewrite + modules recommended for optimal WordPress performance |
+| WordPress optimizations |
+
 ## Background
 
 I tried about 30 vagrant setups before this box. I created already two vagrant-repositories before this one. Started to modify them to my needs and noticed that commit after commit I got more and more stuck with stuff I didn't need or wasn't patient enough to learn how to configure thoroughly.
@@ -48,13 +56,6 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 2. Simple knowledge of web servers
 3. WordPress projects under the same folder
 4. [dudestack](https://github.com/digitoimistodude/dudestack) in use
-
-## What's inside?
-
-- Vagrantfile with speed optimizations, nfs mounts, 2 GB of RAM, 2 CPU cores
-- Ubuntu 12.04.5 LTS (Precise Pangolin)
-- MySQL 5.5
-- PHP 5.3.10 with mod_rewrite + modules recommended for optimal WordPress performance
 
 ## Installation
 
