@@ -12,7 +12,7 @@ Currently tested on Linux and Mac OS X.
 |-------------------------|--------------------------------------------------------------------|
 | Ubuntu                  | 12.04.5 LTS (Precise Pangolin)                                     |
 | MySQL                   | 5.5                                                                |
-| PHP                     | 5.3.10 with mod_rewrite, APC                                       |
+| PHP                     | 5.3.10                                       |
 | WordPress optimizations | PHP modules recommended for optimal WordPress performance          |
 | Vagrant                 | NFS, provision.sh with pre-installed packages, speed optimizations |
 | CPU cores               | 2                                                                  |
