@@ -8,12 +8,16 @@ Currently tested on Linux and Mac OS X.
 
 ## What's inside?
 
-| Vagrantfile with speed optimizations, nfs mounts, 2 GB of RAM, 2 CPU cores          |
-|-------------------------------------------------------------------------------------|
-| Ubuntu 12.04.5 LTS (Precise Pangolin)                                               |
-| MySQL 5.5                                                                           |
-| PHP 5.3.10 with mod_rewrite + modules recommended for optimal WordPress performance |
-| WordPress optimizations                                                             |
+| Feature                 | Version / amount                                                   |
+|-------------------------|--------------------------------------------------------------------|
+| Ubuntu                  | 12.04.5 LTS (Precise Pangolin)                                     |
+| MySQL                   | 5.5                                                                |
+| PHP                     | 5.3.10 with mod_rewrite, APC                                       |
+| WordPress optimizations | PHP modules recommended for optimal WordPress performance          |
+| Vagrant                 | NFS, provision.sh with pre-installed packages, speed optimizations |
+| CPU cores               | 2                                                                  |
+| RAM                     | 2 GB                                                               |
+| Apache                  | 2.2.22                                                             |
 
 ## Background
 
