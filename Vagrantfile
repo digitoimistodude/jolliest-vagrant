@@ -1,10 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-
 Vagrant.configure("2") do |config|
-  config.vm.box = "precise32"
-  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+  config.vm.box = "precise64"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
   config.vm.network "forwarded_port", host: 80, guest: 80, auto_correct: true
   config.vm.network "forwarded_port", host: 443, guest: 443, auto_correct: true
@@ -14,8 +13,10 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "~/Projects", "/var/www", id: "core", :nfs => true, :mount_options => ['nolock,vers=3,udp,actimeo=2']
 
   config.vm.provider "virtualbox" do |v|
-    v.customize ["modifyvm", :id, "--memory", "2048", "--ioapic", "on"]
-    v.customize ["modifyvm", :id, "--cpus", "2"]
+    v.name = "jolliest-vagrant_default_1429886830800_80620"
+    v.customize ["modifyvm", :id, "--memory", "4096", "--ioapic", "on"]
+    v.customize ["modifyvm", :id, "--cpuexecutioncap", "90"]
+    v.customize ["modifyvm", :id, "--cpus", 2]
     v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
     v.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
   end
