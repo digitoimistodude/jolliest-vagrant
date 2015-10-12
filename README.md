@@ -49,7 +49,9 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 7. [SSL / HTTPS (optional)](#ssl--https-optional)
 8. [Installing Phpmyadmin (optional)](#installing-phpmyadmin-optional)
 9. [Sequel Pro settings for MySQL](#sequel-pro-settings-for-mysql)
-10. [Troubleshooting and issues](#troubleshooting-and-issues)
+10. [Extra](#extra)
+  1. [Installing PHP 5.5 and Apache 2.4 with FastCGI](#installing-php55-and-apache24-with-fastcgi)
+11. [Troubleshooting and issues](#troubleshooting-and-issues)
   1. [Connection timeout](#connection-timeout)
   2. [SSH command responded with a non-zero exit status](#ssh-command-responded-with-a-non-zero-exit-status)
   3. [Corrupted JS/CSS](#corrupted-jscss)
@@ -231,6 +233,93 @@ If you use Mac OS X I recommend Sequel Pro, but in other cases phpmyadmin comes 
 6. `sudo pico -w /etc/apache2/apache2.conf` and add `Include /etc/phpmyadmin/apache.conf` to the bottom
 7. Restart apache with `sudo service apache2 restart`
 8. Now you can access your phpmyadmin in [localhost/phpmyadmin](http://localhost/phpmyadmin) (if not, make sure you have `10.1.2.3 localhost` added to your /etc/hosts (on your PC, NOT in vagrant ssh) and you have invoked the [ssh LAN command](#connecting-with-another-computer-in-lan).
+
+## Extra
+
+### Installing PHP 5.5 and Apache 2.4 with FastCGI
+
+If you need newer PHP version, this box doesn't provide it out of the box, because you will also have to upgrade Apache 2.4. This have to be done as post installation (for now). Make sure you are inside the vagrant box (command `vagrant ssh` inside vagrant installation folder `~/Projects/jolliest-vagrant`).
+
+**Please note:** I warn you, this setup is not very straightforward, although I had to do it once and I have written a tutorial for you below. This could take time though and if you need newer stuff, please consider another Vagrant box. I might create a newer box later on when our production server is updated, but for now it is what it is.
+
+First upgdare Apache 2.2 to 2.4 (based on [this tutorial](http://www.ivankrizsan.se/2014/07/17/upgrading-apache-http-server-2-2-to-2-4-on-ubuntu-12-04/)):
+
+1. Backup existing configs (if you have any) with `sudo cp -R /etc/apache2 ~/apache2.2.backup`
+2. Backup existing mods list with `cd /etc/apache2/mods-enabled/ && sudo ls -al > ~/enabled-mods.txt`
+3. Stop apache: `sudo service apache2 stop`
+4. Remove apache2 files: `sudo rm -r /etc/apache2`
+5. Remove existing apache: `sudo apt-get remove apache2 && sudo apt-get remove apache2* && sudo apt-get purge apache2 apache2-utils apache2.2-bin apache2-common && sudo apt-get autoremove`
+6. Add repository: `sudo apt-add-repository ppa:ondrej/php5`
+7. Update: `sudo apt-get update`
+8. Install apache 2.4: `sudo apt-get install apache2`, select Y on `Y or I  : install the package maintainer's version` and check `install the package maintainer's version` when asked
+9. Check out your previous modules by `cat /home/vagrant/enabled-mods.txt`
+10. `cd /etc/apache2/mods-enabled` and `sudo ls -al`, compare these two outputs and check out which modules are missing
+11. Enable mods one by one with these commands: 
+`sudo cp /home/vagrant/apache2.2.backup/mods-available/dir.load /etc/apache2/mods-available/`
+`sudo ln -s /etc/apache2/mods-available/dir.conf`
+`sudo ln -s /etc/apache2/mods-available/dir.load`
+`sudo cp /home/vagrant/apache2.2.backup/mods-available/alias.load /etc/apache2/mods-available/`
+`sudo ln -s /etc/apache2/mods-available/alias.conf`
+`sudo ln -s /etc/apache2/mods-available/alias.load`
+`sudo cp /home/vagrant/apache2.2.backup/mods-available/authn_file.load /etc/apache2/mods-available/`
+`sudo ln -s /etc/apache2/mods-available/authn_file.load`
+`sudo ln -s /etc/apache2/mods-available/authz_groupfile.load`
+`sudo ln -s /etc/apache2/mods-available/authz_user.load`
+`sudo ln -s /etc/apache2/mods-available/autoindex.conf`
+`sudo cp /home/vagrant/apache2.2.backup/mods-available/autoindex.load /etc/apache2/mods-available/`
+`sudo ln -s /etc/apache2/mods-available/autoindex.load`
+`sudo cp /home/vagrant/apache2.2.backup/mods-available/cgid.load /etc/apache2/mods-available/`
+`sudo ln -s /etc/apache2/mods-available/cgid.conf`
+`sudo ln -s /etc/apache2/mods-available/cgid.load`
+`sudo ln -s /etc/apache2/mods-available/deflate.conf`
+`sudo ln -s /etc/apache2/mods-available/deflate.load`
+`sudo cp /home/vagrant/apache2.2.backup/mods-available/env.load /etc/apache2/mods-available/`
+`sudo ln -s /etc/apache2/mods-available/env.load`
+`sudo cp /home/vagrant/apache2.2.backup/mods-available/fastcgi* /etc/apache2/mods-available/`
+`sudo ln -s /etc/apache2/mods-available/fastcgi.conf`
+`sudo ln -s /etc/apache2/mods-available/fastcgi.load`
+`sudo cp /home/vagrant/apache2.2.backup/mods-available/mime.load /etc/apache2/mods-available/`
+`sudo ln -s /etc/apache2/mods-available/mime.conf`
+`sudo ln -s /etc/apache2/mods-available/mime.load`
+`sudo ln -s /etc/apache2/mods-available/reqtimeout.conf`
+`sudo ln -s /etc/apache2/mods-available/setenvif.conf`
+`sudo ln -s /etc/apache2/mods-available/ssl.conf`
+`sudo ln -s /etc/apache2/mods-available/ssl.load`
+`sudo ln -s /etc/apache2/mods-available/status.conf`
+`sudo ln -s /etc/apache2/mods-available/socache_shmcb.load`
+9. Copy default config in place with `sudo cp /home/vagrant/apache2.2.backup/sites-available/default /etc/apache2/sites-available/000-default.conf`
+10. Copy existing sites in place with `cd ~/apache2.2.backup/sites-available && sudo cp * /etc/apache2/sites-available && cd ~/apache2.2.backup/sites-enabled && sudo cp * /etc/apache2/sites-enabled`
+11. Enable mod_rewrite: `sudo a2enmod rewrite`
+
+If you encounter any problems, try reinstalling with `sudo dpkg -P apache2` and `sudo apt-get install apache2` or/and try debugging errors again.
+
+Don't restart apache yet, go straght to this step. Here's the clean way to install PHP 5.5 on Ubuntu 12.04 (based on [this](http://stackoverflow.com/questions/21390544/installing-apache-2-4-and-php-5-5-on-ubuntu-12-04)):
+
+1. Run `sudo apt-add-repository ppa:ondrej/apache2`
+2. Update repos with `sudo apt-get update`
+4. Install PHP 5.5: `sudo apt-get install php5-common php5-mysqlnd php5-xmlrpc php5-curl php5-gd php5-cli php5-fpm php-pear php5-dev php5-imap php5-mcrypt`
+6. Select Y on `Y or I  : install the package maintainer's version` and check `install the package maintainer's version` when asked
+7. Check that it's 5.5 with `php -v`
+8. Install fpm for 5.5 with `sudo apt-get install libapache2-mod-fastcgi`
+9. Enable php5-fpm by `sudo a2enconf php5-fpm && a2enmod actions fastcgi alias`
+10. Edit & add following: `pico -w /etc/apache2/conf-available/php5-fpm.conf` (according to helpful tip [here](http://stackoverflow.com/questions/19445686/ubuntu-server-apache-2-4-6-client-denied-by-server-configuration-php-fpm):
+
+````
+<IfModule mod_fastcgi.c>
+    AddHandler php5-fcgi .php
+    Action php5-fcgi /php5-fcgi
+    Alias /php5-fcgi /usr/lib/cgi-bin/php5-fcgi
+    FastCgiExternalServer /usr/lib/cgi-bin/php5-fcgi -socket /var/run/php5-fpm.sock -pass-header Authorization
+
+    # NOTE: using '/usr/lib/cgi-bin/php5-cgi' here does not work, 
+    #   it doesn't exist in the filesystem!
+    <Directory /usr/lib/cgi-bin>
+        Require all granted
+    </Directory>
+</Ifmodule>
+````
+
+Restart apache and FPM with `sudo service apache2 restart && sudo service php5-fpm restart` and you're done!
 
 ## Troubleshooting and issues
 
