@@ -50,7 +50,7 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 8. [Installing Phpmyadmin (optional)](#installing-phpmyadmin-optional)
 9. [Sequel Pro settings for MySQL](#sequel-pro-settings-for-mysql)
 10. [Extra](#extra)
-  1. [Installing PHP 5.5 and Apache 2.4 with FastCGI](#installing-php55-and-apache24-with-fastcgi)
+  1. [Installing PHP 5.5 and Apache 2.4 with FastCGI](#installing-php-55-and-apache-24-with-fastcgi)
 11. [Troubleshooting and issues](#troubleshooting-and-issues)
   1. [Connection timeout](#connection-timeout)
   2. [SSH command responded with a non-zero exit status](#ssh-command-responded-with-a-non-zero-exit-status)
