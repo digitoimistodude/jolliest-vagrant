@@ -319,6 +319,21 @@ Don't restart apache yet, go straght to this step. Here's the clean way to insta
 </Ifmodule>
 ````
 
+If you get internal server error or 404 not found with pretty links, add this to `/etc/apache2/apache2.conf` (find existing similar lines and remove them):
+
+````
+<Directory />
+    Options FollowSymLinks
+    AllowOverride None
+    Require all denied
+</Directory>
+<Directory /var/www/>
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Require all granted
+</Directory>
+````
+
 Restart apache and FPM with `sudo service apache2 restart && sudo service php5-fpm restart` and you're done!
 
 ## Troubleshooting and issues
