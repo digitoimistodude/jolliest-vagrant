@@ -288,8 +288,7 @@ First upgdare Apache 2.2 to 2.4 (based on [this tutorial](http://www.ivankrizsan
 `sudo ln -s /etc/apache2/mods-available/status.conf`
 `sudo ln -s /etc/apache2/mods-available/socache_shmcb.load`
 9. Copy default config in place with `sudo cp /home/vagrant/apache2.2.backup/sites-available/default /etc/apache2/sites-available/000-default.conf`
-10. Copy existing sites in place with `cd ~/apache2.2.backup/sites-available && sudo cp * /etc/apache2/sites-available && cd ~/apache2.2.backup/sites-enabled && sudo cp * /etc/apache2/sites-enabled`
-11. Enable mod_rewrite: `sudo a2enmod rewrite`
+10. Enable mod_rewrite: `sudo a2enmod rewrite`
 
 If you encounter any problems, try reinstalling with `sudo dpkg -P apache2` and `sudo apt-get install apache2` or/and try debugging errors again.
 
@@ -334,7 +333,7 @@ If you get internal server error or 404 not found with pretty links, add this to
 </Directory>
 ````
 
-Restart apache and FPM with `sudo service apache2 restart && sudo service php5-fpm restart` and you're done!
+Restart apache and FPM with `sudo service apache2 restart && sudo service php5-fpm restart`. Exit vagrant ssh and run `vagrant reload && vagrant provision` in Vagrant directory end check out possible errors. Otherwise everything should be good!
 
 ## Troubleshooting and issues
 
