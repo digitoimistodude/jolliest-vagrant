@@ -1,6 +1,6 @@
 # Jolliest vagrant
 
-**tl;dr;** This is a simple vagrant server with minimal provisioning, originally created for local development environment for multiple WordPress projects.
+This is a **simple** WordPress optimized vagrant server with **minimal** provisioning, originally created for local development environment for multiple WordPress projects.
 
 This vagrant server can be used as plain local server for serving your files or testing static PHP, but it's also perfect for WordPress development.
 
@@ -12,12 +12,12 @@ Currently tested on Linux and Mac OS X.
 |-------------------------|--------------------------------------------------------------------|
 | Ubuntu                  | 12.04.5 LTS (Precise Pangolin)                                     |
 | MySQL                   | 5.5                                                                |
-| PHP                     | 5.3.10                                       |
+| PHP                     | 5.3.10 (optionally 5.5.30)                                       |
 | WordPress optimizations | PHP modules recommended for optimal WordPress performance          |
 | Vagrant                 | NFS, provision.sh with pre-installed packages, speed optimizations |
 | CPU cores               | 2                                                                  |
 | RAM                     | 2 GB                                                               |
-| Apache                  | 2.2.22                                                             |
+| Apache                  | 2.2.22 (optionally 2.4.16)                                                            |
 
 ## Background
 
@@ -72,9 +72,9 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 4. Install vagrant-triggers with command `vagrant plugin install vagrant-triggers`
 5. Install VirtualBox Guest Additions -updater vagrant-vbguest with command `vagrant plugin install vagrant-vbguest`
 6. Clone this repo to your Projects directory (path `~/Projects/jolliest-vagrant` is depedant in [dudestack](https://github.com/digitoimistodude/dudestack))
-7. *(Optional, do this for example if you want to use other image or encounter problems with included Vagrantfile)* If you don't know or don't care, don't do this step. Modify **Vagrantfile**: `config.vm.box` and `config.vm.box_url` to match your production server OS, `config.vm.network` for IP (I recommend it to be `10.1.2.3` to prevent collisions with other subnets) (**For Linux** you need to remove `, :mount_options...` if problems occur with starting the server. Please remove parts that give you errors). **If you don't need to access server from LAN** with co-workers to update WordPress for example, remove completely line with `config.vm.network "public_network"`. You may also need to try different ports than 80 and 443 if your Mac prevents them. For example change the ports to 8080 and 443 (also change triggers accordingly)
+7. *(Optional, do this for example if you want to use other image or encounter problems with included Vagrantfile)* If you don't know or don't care, don't do this step. Modify **Vagrantfile**: `config.vm.box` and `config.vm.box_url` to match your production server OS, `config.vm.network` for IP (I recommend it to be `10.1.2.3` to prevent collisions with other subnets) (**For Linux** you need to remove `, :mount_options...` if problems occur with starting the server. Please remove parts that give you errors). **If you don't need to access server from LAN** with co-workers to update WordPress for example, remove completely line with `config.vm.network "public_network"`. You may also need to try different ports than 80 and 443 if your Mac blocks them. For example change the ports to 8080 and 443 (also change triggers accordingly)
 8. If you store your projects in different folder than *~/Projects*, change the correct path to `config.vm.synced_folder`
-9. Edit or add packages to match your production server packages in **provision.sh** if needed
+9. Edit or add packages to match your production server packages in **provision.sh** if needed (it's good out of the box though)
 10. Add `10.1.2.3 somesite.dev` to your **/etc/hosts**
 11. Run `vagrant up --provision`. This can take a moment.
 
@@ -84,7 +84,7 @@ You can always see the apache status by `vagrant ssh`'ing to your vagrant box an
 
 ## Post-installations
 
-Since I want to make this as simple as possible and this will be the single VM for multiple projects that does not need to change much over time, I want extra stuff to be installed manually.
+Since I want to make this as simple as possible and this will be the single VM for multiple projects that does not need to change much over time, I want extra stuff to be installed manually. Also, the cleaner the better, besides, what is more fun than installing and configurating things?
 
 1. Make sure you are in your vagrant directory (`cd ~/Projects/jolliest-vagrant`) and SSH into your vagrant box by `vagrant ssh`
 2. You may want to remove the default "It works!" -page. Do this by `rm /var/www/index.html`
