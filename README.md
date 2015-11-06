@@ -37,21 +37,22 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 
 ## Table of contents
 
-1. [Installation](#installation)
-2. [Post-installations](#post-installations)
+1. [Installation on Mac/Linux](#installation-on-mac-linux)
+2. [Installation on Windows](#installation-on-windows)
+3. [Post-installations](#post-installations)
   1. [Installing FastCGI](#1-installing-fastcgi)
   2. [Installing Alternative PHP cache](#2-installing-alternative-php-cache)
   3. [More speed with configs](#3-more-speed-with-configs)
-3. [How to add new vhost](#how-to-add-new-vhost)
-4. [How to remove a project or vhost](#how-to-remove-a-project-or-vhost)
-5. [Connecting with another computer in LAN](#connecting-with-another-computer-in-lan)
-6. [Port forwarding (optional)](#port-forwarding-optional)
-7. [SSL / HTTPS (optional)](#ssl--https-optional)
-8. [Installing Phpmyadmin (optional)](#installing-phpmyadmin-optional)
-9. [Sequel Pro settings for MySQL](#sequel-pro-settings-for-mysql)
-10. [Extra](#extra)
+4. [How to add new vhost](#how-to-add-new-vhost)
+5. [How to remove a project or vhost](#how-to-remove-a-project-or-vhost)
+6. [Connecting with another computer in LAN](#connecting-with-another-computer-in-lan)
+7. [Port forwarding (optional)](#port-forwarding-optional)
+8. [SSL / HTTPS (optional)](#ssl--https-optional)
+9. [Installing Phpmyadmin (optional)](#installing-phpmyadmin-optional)
+10. [Sequel Pro settings for MySQL](#sequel-pro-settings-for-mysql)
+11. [Extra](#extra)
   1. [Installing PHP 5.5 and Apache 2.4 with FastCGI](#installing-php-55-and-apache-24-with-fastcgi)
-11. [Troubleshooting and issues](#troubleshooting-and-issues)
+12. [Troubleshooting and issues](#troubleshooting-and-issues)
   1. [Connection timeout](#connection-timeout)
   2. [SSH command responded with a non-zero exit status](#ssh-command-responded-with-a-non-zero-exit-status)
   3. [Corrupted JS/CSS](#corrupted-jscss)
@@ -64,7 +65,7 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 3. WordPress projects under the same folder
 4. [dudestack](https://github.com/digitoimistodude/dudestack) in use
 
-## Installation
+## Installation on Mac/Linux
 
 1. Install [Virtualbox](https://www.virtualbox.org/)
 2. Start Virtualbox, check updates and install all the latest versions of Virtualbox and Oracle VM Virtualbox Extension Pack, if asked
@@ -81,6 +82,20 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 If you make any changes to **Vagrantfile**, run `vagrant reload` or `vagrant up --provision` if the server is not running, or if you change **provision.sh** while running, run `vagrant provision`.
 
 You can always see the apache status by `vagrant ssh`'ing to your vagrant box and typing `sudo service apache2 status`. If it's not started, run `sudo service apache2 start`.
+
+## Installation on Windows
+
+1. Install [Virtualbox](https://www.virtualbox.org/) for Windows
+2. Install [Vagrant](http://www.vagrantup.com) for Windows
+3. Install [Git](https://git-scm.com/download/win) for Windows
+3. Right click My Computer (or This Computer on Windows 10), click Properties, click Advaned System Settings tab, click Environment Variables. Change `VBOX_MSI_INSTALL_PATH` to `VBOX_INSTALL_PATH`. In Windows 10, you can go to Advanced System Settings simply typing it when Start Menu is open.
+4. Start `cmd`
+5. Navigate to root of `C:\` with double dots `..`
+6. `mkdir Projects` to create a project dir and `cd Projects` to enter it
+7. Clone this repo to Projects with command `git clone git@github.com:digitoimistodude/jolliest-vagrant.git`
+8. Edit `Vagrantfile` with your favorite editor and rename `~/Projects` to `C:/Projects`
+9. Run `vagrant up --provision`, wait when box is installed and Allow access if it asks it. This can take a moment.
+10. Add `10.1.2.3 somesite.dev` to your **C:/Windows/system32/drivers/etc/hosts** file and have fun!
 
 ## Post-installations
 
