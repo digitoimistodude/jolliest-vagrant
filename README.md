@@ -88,12 +88,13 @@ You can always see the apache status by `vagrant ssh`'ing to your vagrant box an
 1. Install [Virtualbox](https://www.virtualbox.org/) for Windows
 2. Install [Vagrant](http://www.vagrantup.com) for Windows
 3. Install [Git](https://git-scm.com/download/win) for Windows
-3. Right click My Computer (or This Computer on Windows 10), click Properties, click Advaned System Settings tab, click Environment Variables. Change `VBOX_MSI_INSTALL_PATH` to `VBOX_INSTALL_PATH`. In Windows 10, you can go to Advanced System Settings simply typing it when Start Menu is open.
+3. Right click My Computer (or This Compu
+ter on Windows 10), click Properties, click Advaned System Settings tab, click Environment Variables. Change `VBOX_MSI_INSTALL_PATH` to `VBOX_INSTALL_PATH`. In Windows 10, you can go to Advanced System Settings simply typing it when Start Menu is open.
 4. Start `cmd`
 5. Navigate to root of `C:\` with double dots `..`
 6. `mkdir Projects` to create a project dir and `cd Projects` to enter it
 7. Clone this repo to Projects with command `git clone git@github.com:digitoimistodude/jolliest-vagrant.git`
-8. Edit `Vagrantfile` with your favorite editor and rename `~/Projects` to `C:/Projects`
+8. Edit `Vagrantfile` with your favorite editor and rename `~/Projects` to `C:/Projects`. Remove `, :mount_options => ['nolock,vers=3,udp,actimeo=2']`
 9. Run `vagrant up --provision`, wait when box is installed and Allow access if it asks it. This can take a moment.
 10. Add `10.1.2.3 somesite.dev` to your **C:/Windows/system32/drivers/etc/hosts** file and have fun!
 
