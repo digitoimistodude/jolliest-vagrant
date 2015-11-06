@@ -4,7 +4,7 @@ This is a **simple** WordPress optimized vagrant server with **minimal** provisi
 
 This vagrant server can be used as plain local server for serving your files or testing static PHP, but it's also perfect for WordPress development.
 
-Currently tested on Linux and Mac OS X.
+Currently successfully tested on Linux (elementary OS), Mac OS X and Windows 10.
 
 ## What's inside?
 
@@ -37,7 +37,7 @@ To start this vagrant box, always run `vagrant up --provision`, with provision -
 
 ## Table of contents
 
-1. [Installation on Mac/Linux](#installation-on-mac-linux)
+1. [Installation on Mac/Linux](#installation-on-maclinux)
 2. [Installation on Windows](#installation-on-windows)
 3. [Post-installations](#post-installations)
   1. [Installing FastCGI](#1-installing-fastcgi)
