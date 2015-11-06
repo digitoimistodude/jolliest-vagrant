@@ -265,7 +265,7 @@ First upgdare Apache 2.2 to 2.4 (based on [this tutorial](http://www.ivankrizsan
 3. Stop apache: `sudo service apache2 stop`
 4. Remove apache2 files: `sudo rm -r /etc/apache2`
 5. Remove existing apache: `sudo apt-get remove apache2 && sudo apt-get remove apache2* && sudo apt-get purge apache2 apache2-utils apache2.2-bin apache2-common && sudo apt-get autoremove`
-6. Add repository: `sudo apt-add-repository ppa:ondrej/php5`
+6. Add repository: `sudo apt-add-repository ppa:ondrej/php5` (if you get command not found, run `sudo apt-get install python-sofware-properties` and try again)
 7. Update: `sudo apt-get update`
 8. Install apache 2.4: `sudo apt-get install apache2`, select Y on `Y or I  : install the package maintainer's version` and check `install the package maintainer's version` when asked
 9. Check out your previous modules by `cat /home/vagrant/enabled-mods.txt`
