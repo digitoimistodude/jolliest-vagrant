@@ -6,6 +6,8 @@ This vagrant server can be used as plain local server for serving your files or 
 
 Currently successfully tested on Linux (elementary OS), Mac OS X and Windows 10.
 
+See also nginx/HHVM powered [wile-vagrant](https://github.com/digitoimistodude/wile-vagrant).
+
 ## What's inside?
 
 | Feature                 | Version / amount                                                   |
