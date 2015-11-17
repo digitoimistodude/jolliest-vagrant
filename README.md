@@ -35,7 +35,7 @@ Tried  to make up distinctive name for this and noticed *server for multiple pro
 
 ## Usage
 
-To start this vagrant box, always run `vagrant up --provision`, with provision -hook to ensure all the stuff are loaded up properly. Skip to the [Installation](#installation), if you are ready to start.
+To start this vagrant box, always run `vagrant up --provision`, with provision -hook to ensure all the stuff are loaded up properly.
 
 ## Table of contents
 
