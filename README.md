@@ -1,5 +1,7 @@
 # Jolliest vagrant
 
+**Note that this box is no longer updated. Currently focusing on our [LEMP stack development](https://github.com/digitoimistodude/marlin-vagrant).**
+
 This is a **simple** WordPress optimized vagrant server with **minimal** provisioning, originally created for local development environment for multiple WordPress projects.
 
 This vagrant server can be used as plain local server for serving your files or testing static PHP, but it's also perfect for WordPress development.
