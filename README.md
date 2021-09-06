@@ -1,6 +1,7 @@
-# Jolliest vagrant
+| :bangbang: | **This repository is no longer actively maintained. The vagrant box still works, but does not receive any further updates other than community contributed fixes. Currently focusing on our [LEMP stack development](https://github.com/digitoimistodude/marlin-vagrant)**  |
+|:------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
-**Note that this box is no longer updated. Currently focusing on our [LEMP stack development](https://github.com/digitoimistodude/marlin-vagrant).**
+# Jolliest vagrant
 
 This is a **simple** WordPress optimized vagrant server with **minimal** provisioning, originally created for local development environment for multiple WordPress projects.
 
